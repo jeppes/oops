@@ -91,7 +91,7 @@ counter.decrement()
 print(counter.count()) // prints: 1
 ```
 
-Now we support state! Truly private state too! Note that there is now way to access `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement`. No special keywords or syntax required.
+Now we support state! Truly private state too! Note that there is no way to access `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement`. No special keywords or syntax required.
 
 If our functions can share private variables, surely they can share functions too. Let's try it out by building a slightly louder counter that will make it very clear what its up to:
 
