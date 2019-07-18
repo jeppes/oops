@@ -34,7 +34,7 @@ const someFunctions = a => [
 ]
 ```
 
-We can pick out these functions with some destructuring:
+Now we can access these fucntions with a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
 ```javascript
 const [tenPlusFive, justTen, tenMinus] = someFunctions(10)
@@ -45,7 +45,7 @@ print(tenMinus(5))   // prints: 5
 ```
 
 
-But remembering the order is hard and pointless. Let's give them names by putting them in a map instead:
+But returning the functions in a list requires us to remember the order, so let's use a map instead. This will let us name our functions:
 
 ```javascript
 const someNamedFunctions = a => ({
@@ -55,7 +55,7 @@ const someNamedFunctions = a => ({
 })
 ```
 
-Like before, we could pick out the functioning with destructuring - but let's just name the map that we return instead:
+Like before, we could pick out the functioning with a destructuring assignment - but let's just name the map that we return instead:
 
 ```javascript
 const ten = someNamedFunctions(10)
@@ -69,7 +69,7 @@ Progress! :tada:
 
 It _almost_ looks like using an object in OOP, but there's really no reason that we *have* to return our functions right away. If we give them some breathing room, we might just open up the ability for them to collaborate.
 
-Let's try building a little machine that knows how to count by putting a variable in said breathing room that our functions can access:
+Let's try building a little machine that knows how to count by declaring a local variable before returning our functions. Our counter can use this variable to keep track of its current state:
 
 ```javascript
 const makeCounter = () => {
@@ -95,10 +95,10 @@ Now we support state! Truly private state too!
 
 Note that there is no way to access the `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement` - no special keywords or syntax required.
 
-If our functions can share private variables, surely they can share functions too. Let's try it out by building a slightly louder counter that will make it very clear what it's up to:
+If our functions can share private variables, surely they can share functions too. Let's make a counter which will print it's current count whenever someone interacts with it:
 
 ```javascript
-const makeLouderCounter = () => {
+const makeShoutyCounter = () => {
   let count = 0
 
   const shout = () => print(`My current count is ${count}!!!`)
@@ -117,22 +117,22 @@ const makeLouderCounter = () => {
   }
 }
 
-const louderCounter = makeLouderCounter()
+const shoutyCounter = makeShoutyCounter()
 
 // No need to print manually anymore, the counter will do it for us!
-louderCounter.increment() // prints: My current count is 1!!!
-louderCounter.increment() // prints: My current count is 2!!!
-louderCounter.decrement() // prints: My current count is 1!!!
+shoutyCounter.increment() // prints: My current count is 1!!!
+shoutyCounter.increment() // prints: My current count is 2!!!
+shoutyCounter.decrement() // prints: My current count is 1!!!
 ```
 
-Now we have something that's starting to resemble a class. Our constructor is `makeLouderCounter`, we have public methods like `increment`, private methods like `shout`, and even state like `count`.
+Now we have something that's starting to resemble a class. Our constructor is `makeShoutyCounter`, we have public methods like `increment`, private methods like `shout`, and even state like `count`.
 
 In any OOP course, you'll learn about inheritance - the idea that one class classes can inherit the functionality of other classes.
 
-Let's try that now by reproducing our `loudCounter` by "inheriting" from the first counter we made.
+Let's try that now by recreating our `shoutyCounter` by "inheriting" from the first counter we made.
 
 ```javascript
-const makeLoudInheritedCounter = () => {
+const makeInheritedShoutyCounter = () => {
   // Counter is our super-class, so let's make one of those
   let superRef = makeCounter()
 
@@ -154,12 +154,14 @@ const makeLoudInheritedCounter = () => {
   }
 }
 
-const loudInheritedCounter = makeLoudInheritedCounter()
+const inheritedShoutyCounter = makeInheritedShoutyCounter()
 
-loudInheritedCounter.increment() // prints: My current count is 1!!!
-loudInheritedCounter.increment() // prints: My current count is 2!!!
-loudInheritedCounter.decrement() // prints: My current count is 1!!!
+inheritedShoutyCounter.increment() // prints: My current count is 1!!!
+inheritedShoutyCounter.increment() // prints: My current count is 2!!!
+inheritedShoutyCounter.decrement() // prints: My current count is 1!!!
 ```
+
+So far we've implemented the core features of classes in OOP. We have constructors, private and public methods, state encapsulation, and inheritance. All built without any traditional OOP syntax.
 
 ---
 
