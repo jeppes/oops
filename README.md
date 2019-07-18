@@ -14,7 +14,7 @@ const identity = a => a
 print(identity(1)) // prints: 1
 ```
 
-Let's re-write `identity` slightly to delay its execution. We'll return a function instead of a value:
+Let's re-write `identity` slightly to defer its execution. We'll return a function instead of a value:
 
 ```javascript
 const deferredIdentity = a => () => a
@@ -34,7 +34,7 @@ const someFunctions = a => [
 ]
 ```
 
-Now we can access these fucntions with a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+Now we can access these fucntions with a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
 ```javascript
 const [tenPlusFive, justTen, tenMinus] = someFunctions(10)
