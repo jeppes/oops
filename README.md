@@ -123,7 +123,7 @@ louderCounter.increment() // prints: My current count is 2!!!
 louderCounter.decrement() // prints: My current count is 1!!!
 ```
 
-Now we have something that's starting to resemble a class. Our constructor is `makeLouderCounter`, we have public methods like `increment`, private methods like `decrement`, and even state like `count`.
+Now we have something that's starting to resemble a class. Our constructor is `makeLouderCounter`, we have public methods like `increment`, private methods like `shout`, and even state like `count`.
 
 In any OOP course, you'll learn about inheritance - the idea that one class classes can inherit the functionality of other classes.
 
