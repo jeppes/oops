@@ -2,11 +2,11 @@
 
 ES6 brought the all too familiar "class" syntax to the world of Javascript. About time! Right??
 
-Maybe not. Let's revisit the ideas behind object-orientated programming (OOP) through a slightly different lens.
+Maybe not. Let's revisit the ideas behind object-oriented programming (OOP) through a slightly different lens.
 
 ---
 
-We'll start with a simple function that just returns the argument passed to it. We'll call it `identity`.
+We'll start with a simple function that just returns the argument passed in to it. Let's call it `identity`.
 
 ```javascript
 const identity = a => a
@@ -14,7 +14,7 @@ const identity = a => a
 print(identity(1)) // prints: 1
 ```
 
-`identity` is a perfectly fine function, but let's just re-write it slightly to delay its execution. We'll return a function instead of a value:
+Let's re-write `identity` slightly to delay its execution. We'll return a function instead of a value:
 
 ```javascript
 const deferredIdentity = a => () => a
@@ -55,7 +55,7 @@ const someNamedFunctions = a => ({
 })
 ```
 
-Like before, we could pick out the functioning with destructuring. But let's just name the map that we return instead:
+Like before, we could pick out the functioning with destructuring - but let's just name the map that we return instead:
 
 ```javascript
 const ten = someNamedFunctions(10)
@@ -65,9 +65,9 @@ print(ten.just())     // prints: 10
 print(ten.minus(5))   // prints: 5
 ```
 
-Progress!
+Progress! :tada:
 
-If you squint it almost looks like using an object in OOP. But there's really no reason that we *have* to return our functions right away. If we give them some breathing room, we might just open up the ability for them to collaborate.
+It _almost_ looks like using an object in OOP, but there's really no reason that we *have* to return our functions right away. If we give them some breathing room, we might just open up the ability for them to collaborate.
 
 Let's try building a little machine that knows how to count by putting a variable in said breathing room that our functions can access:
 
@@ -91,9 +91,11 @@ counter.decrement()
 print(counter.count()) // prints: 1
 ```
 
-Now we support state! Truly private state too! Note that there is no way to access `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement`. No special keywords or syntax required.
+Now we support state! Truly private state too!
 
-If our functions can share private variables, surely they can share functions too. Let's try it out by building a slightly louder counter that will make it very clear what its up to:
+Note that there is no way to access the `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement` - no special keywords or syntax required.
+
+If our functions can share private variables, surely they can share functions too. Let's try it out by building a slightly louder counter that will make it very clear what it's up to:
 
 ```javascript
 const makeLouderCounter = () => {
@@ -161,8 +163,8 @@ loudInheritedCounter.decrement() // prints: My current count is 1!!!
 
 ---
 
-The point of all this is not that you should build your programs in this way. The point is to show that we can decompose the ideas behind OOP into fundamentally simpler units - namely functions, variables and maps.
+The point of all this is not that you should build your programs in this way. The point is to show that we can decompose the ideas behind OOP into fundamentally simpler units: functions, variables, and maps.
 
-We should also decompose our programs in the same way. By doing so we can express the essence of our software in fundamentally simpler ways. By making classes our primary unit of abstraction, we're stuck building our programs on an inherently complicated idea, which is leading to inherently complicated software.
+We should also decompose our programs in the same way. By doing so, we can express the essence of our software in fundamentally simpler ways. By making classes our primary unit of abstraction, we're stuck building our programs on an inherently complicated idea, which is leading to inherently complicated software.
 
-If you are keen on learning more about this style of programming, I highly recommend [Professor Frisby's Mostly adequate guide to Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide)
+If you are keen on learning more about this style of programming, I highly recommend [Professor Frisby's Mostly Adequate Guide to Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide).
