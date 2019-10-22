@@ -1,6 +1,6 @@
 # OOPs - Accidental object oriented programming
 
-ES6 brought the all too familiar "class" syntax to the world of Javascript. About time! Right??
+ES6 brought the all too familiar "class" syntax to the world of Javascript. About time! Right?
 
 Maybe not. Let's revisit the ideas behind object-oriented programming (OOP) through a slightly different lens.
 
@@ -34,7 +34,7 @@ const someFunctions = a => [
 ]
 ```
 
-Now we can access these fucntions with a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
+Now we can access these functions with a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
 ```javascript
 const [tenPlusFive, justTen, tenMinus] = someFunctions(10)
@@ -95,7 +95,7 @@ Now we support state! Truly private state too!
 
 Note that there is no way to access the `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement` - no special keywords or syntax required.
 
-If our functions can share private variables, surely they can share functions too. Let's make a counter which will print it's current count whenever someone interacts with it:
+If our functions can share private variables, surely they can share functions too. Let's make a counter which will print its current count whenever someone interacts with it:
 
 ```javascript
 const makeShoutyCounter = () => {
