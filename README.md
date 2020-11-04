@@ -34,7 +34,7 @@ const someFunctions = a => [
 ]
 ```
 
-Now we can access these functions with a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
+Now we can access these functions:
 
 ```javascript
 const [tenPlusFive, justTen, tenMinus] = someFunctions(10)
@@ -65,7 +65,7 @@ print(ten.just())     // prints: 10
 print(ten.minus(5))   // prints: 5
 ```
 
-Progress! :tada:
+Progress!
 
 It _almost_ looks like using an object in OOP, but there's really no reason that we *have* to return our functions right away. If we give them some breathing room, we might just open up the ability for them to collaborate.
 
@@ -91,7 +91,7 @@ counter.decrement()
 print(counter.count()) // prints: 1
 ```
 
-Now we support state! Truly private state too!
+Now we support state! Truly private state!
 
 Note that there is no way to access the `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement` - no special keywords or syntax required.
 
@@ -101,7 +101,7 @@ If our functions can share private variables, surely they can share functions to
 const makeShoutyCounter = () => {
   let count = 0
 
-  const shout = () => print(`My current count is ${count}!!!`)
+  const shout = () => print(`My current count is ${count}!`)
 
   return {
     increment: () => {
@@ -120,45 +120,36 @@ const makeShoutyCounter = () => {
 const shoutyCounter = makeShoutyCounter()
 
 // No need to print manually anymore, the counter will do it for us!
-shoutyCounter.increment() // prints: My current count is 1!!!
-shoutyCounter.increment() // prints: My current count is 2!!!
-shoutyCounter.decrement() // prints: My current count is 1!!!
+shoutyCounter.increment() // prints: My current count is 1!
+shoutyCounter.increment() // prints: My current count is 2!
+shoutyCounter.decrement() // prints: My current count is 1!
 ```
 
 Now we have something that's starting to resemble a class. Our constructor is `makeShoutyCounter`, we have public methods like `increment`, private methods like `shout`, and even state like `count`.
 
-In any OOP course, you'll learn about inheritance - the idea that one class classes can inherit the functionality of other classes.
+Finally, let's tackle inheritance. To inherit from a class we can start by creating an instance of the desired superclass. We can then intercept calls to any methods we wish to override and forward everything else to the superclass instance.
 
-Let's try that now by recreating our `shoutyCounter` by "inheriting" from the first counter we made.
+Let's try that now by recreating our `shoutyCounter` by "inheriting" from the first counter we made and overriding the `increment` method:
 
 ```javascript
 const makeInheritedShoutyCounter = () => {
   // Counter is our super-class, so let's make one of those
-  let superRef = makeCounter()
-
-  const shout = () => print(`My current count is ${superRef.count()}!!!`)
+  const superRef = makeCounter()
 
   return {
-    // @override (because who doesn't love annotations)
     increment: () => {
-      superRef.increment()
-      shout(superRef.count())
-      return superRef.count()
+      console.log("Incrementing!")
+      return superRef.increment()
     },
-    decrement: () => {
-      superRef.decrement()
-      shout(superRef.count())
-      return superRef.count()
-    },
-    count: superRef.count,
+    ...superRef,
   }
 }
 
 const inheritedShoutyCounter = makeInheritedShoutyCounter()
 
-inheritedShoutyCounter.increment() // prints: My current count is 1!!!
-inheritedShoutyCounter.increment() // prints: My current count is 2!!!
-inheritedShoutyCounter.decrement() // prints: My current count is 1!!!
+inheritedShoutyCounter.increment() // prints: Incrementing! My current count is 1!
+inheritedShoutyCounter.increment() // prints: Incrementing! My current count is 2!
+inheritedShoutyCounter.decrement() // prints: My current count is 1!
 ```
 
 So far we've implemented the core features of classes in OOP. We have constructors, private and public methods, state encapsulation, and inheritance. All built without any traditional OOP syntax.
@@ -168,5 +159,3 @@ So far we've implemented the core features of classes in OOP. We have constructo
 The point of all this is not that you should build your programs in this way. The point is to show that we can decompose the ideas behind OOP into fundamentally simpler units: functions, variables, and maps.
 
 We should also decompose our programs in the same way. By doing so, we can express the essence of our software in fundamentally simpler ways. By making classes our primary unit of abstraction, we're stuck building our programs on an inherently complicated idea, which is leading to inherently complicated software.
-
-If you are keen on learning more about this style of programming, I highly recommend [Professor Frisby's Mostly Adequate Guide to Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide).
