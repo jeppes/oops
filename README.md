@@ -11,7 +11,7 @@ We'll start with a simple function that just returns the argument passed in to i
 ```javascript
 const identity = a => a
 
-print(identity(1)) // prints: 1
+console.log(identity(1)) // prints: 1
 ```
 
 Let's re-write `identity` slightly to defer its execution. We'll return a function instead of a value:
@@ -19,8 +19,8 @@ Let's re-write `identity` slightly to defer its execution. We'll return a functi
 ```javascript
 const deferredIdentity = a => () => a
 
-print(deferredIdentity(1))   // prints: [Function]
-print(deferredIdentity(1)()) // prints: 1
+console.log(deferredIdentity(1))   // prints: [Function]
+console.log(deferredIdentity(1)()) // prints: 1
 ```
 
 Not very useful in and of itself, perhaps, but this trick will come in handy now. Let's give ourselves some options by returning multiple functions:
@@ -39,9 +39,9 @@ Now we can access these functions:
 ```javascript
 const [tenPlusFive, justTen, tenMinus] = someFunctions(10)
 
-print(tenPlusFive()) // prints: 15
-print(justTen())     // prints: 10
-print(tenMinus(5))   // prints: 5
+console.log(tenPlusFive()) // prints: 15
+console.log(justTen())     // prints: 10
+console.log(tenMinus(5))   // prints: 5
 ```
 
 
@@ -60,9 +60,9 @@ Like before, we could pick out the functioning with a destructuring assignment -
 ```javascript
 const ten = someNamedFunctions(10)
 
-print(ten.plusFive()) // prints: 15
-print(ten.just())     // prints: 10
-print(ten.minus(5))   // prints: 5
+console.log(ten.plusFive()) // prints: 15
+console.log(ten.just())     // prints: 10
+console.log(ten.minus(5))   // prints: 5
 ```
 
 Progress!
@@ -84,11 +84,11 @@ const makeCounter = () => {
 const counter = makeCounter()
 
 counter.increment()
-print(counter.count()) // prints: 1
+console.log(counter.count()) // prints: 1
 counter.increment()
-print(counter.count()) // prints: 2
+console.log(counter.count()) // prints: 2
 counter.decrement()
-print(counter.count()) // prints: 1
+console.log(counter.count()) // prints: 1
 ```
 
 Now we support state! Truly private state!
@@ -101,7 +101,7 @@ If our functions can share private variables, surely they can share functions to
 const makeShoutyCounter = () => {
   let count = 0
 
-  const shout = () => print(`My current count is ${count}!`)
+  const shout = () => console.log(`My current count is ${count}!`)
 
   return {
     increment: () => {
@@ -119,7 +119,7 @@ const makeShoutyCounter = () => {
 
 const shoutyCounter = makeShoutyCounter()
 
-// No need to print manually anymore, the counter will do it for us!
+// No need to print manually anymore, the counter will do it for us.
 shoutyCounter.increment() // prints: My current count is 1!
 shoutyCounter.increment() // prints: My current count is 2!
 shoutyCounter.decrement() // prints: My current count is 1!
