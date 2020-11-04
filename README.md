@@ -4,7 +4,7 @@ ES6 brought the all too familiar "class" syntax to the world of Javascript. Abou
 
 Let's revisit the ideas behind object-oriented programming (OOP) through a slightly different lens.
 
----
+## Reconstructing OOP
 
 We'll start with a simple function that just returns the argument passed in to it. Let's call it `identity`.
 
@@ -151,7 +151,7 @@ inheritedShoutyCounter.decrement() // Prints: My current count is 1!
 
 So far we've implemented the core features of classes in OOP. We have constructors, private and public methods, state encapsulation, and inheritance. All built without any traditional OOP syntax.
 
----
+## Conclusion
 
 The point of all this is not that you should build your programs in this way. The point is to show that we can decompose the ideas behind OOP into fundamentally simpler units: functions, variables, and maps.
 
