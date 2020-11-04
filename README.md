@@ -93,14 +93,13 @@ console.log(counter.count()) // prints: 1
 
 Now we support state! Truly private state!
 
-Note that there is no way to access the `sharedState` variable directly. It can only be manipulated by calling `increment` and `decrement` - no special keywords or syntax required.
+Note that there is no way to access the `sharedState` variable from the outer scope. It can only be manipulated by calling `increment` and `decrement`. No special keywords or syntax is required to make it private.
 
 If our functions can share private variables, surely they can share functions too. Let's make a counter which will print its current count whenever someone interacts with it:
 
 ```javascript
 const makeShoutyCounter = () => {
   let count = 0
-
   const shout = () => console.log(`My current count is ${count}!`)
 
   return {
