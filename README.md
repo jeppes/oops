@@ -1,8 +1,8 @@
 # OOPs - Accidental object oriented programming
 
-ES6 brought the all too familiar "class" syntax to the world of Javascript. About time! Right?
+ES6 brought the all too familiar "class" syntax to the world of Javascript. About time! Right? ...Maybe not.
 
-Maybe not. Let's revisit the ideas behind object-oriented programming (OOP) through a slightly different lens.
+Let's revisit the ideas behind object-oriented programming (OOP) through a slightly different lens.
 
 ---
 
@@ -132,22 +132,22 @@ Finally, let's tackle inheritance. To inherit from a class we can start by creat
 ```javascript
 const makeInheritedShoutyCounter = () => {
   // Counter is our super-class, so let's make one of those
-  const superRef = makeCounter()
+  const superRef = makeShoutyCounter()
 
   return {
+    ...superRef,
     increment: () => {
       console.log("Incrementing!")
       return superRef.increment()
     },
-    ...superRef,
   }
 }
 
 const inheritedShoutyCounter = makeInheritedShoutyCounter()
+inheritedShoutyCounter.increment() // Prints: Incrementing! My current count is 1!
+inheritedShoutyCounter.increment() // Prints: Incrementing! My current count is 2!
+inheritedShoutyCounter.decrement() // Prints: My current count is 1!
 
-inheritedShoutyCounter.increment() // prints: Incrementing! My current count is 1!
-inheritedShoutyCounter.increment() // prints: Incrementing! My current count is 2!
-inheritedShoutyCounter.decrement() // prints: My current count is 1!
 ```
 
 So far we've implemented the core features of classes in OOP. We have constructors, private and public methods, state encapsulation, and inheritance. All built without any traditional OOP syntax.
