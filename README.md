@@ -127,9 +127,7 @@ shoutyCounter.decrement() // prints: My current count is 1!
 
 Now we have something that's starting to resemble a class. Our constructor is `makeShoutyCounter`, we have public methods like `increment`, private methods like `shout`, and even state like `count`.
 
-Finally, let's tackle inheritance. To inherit from a class we can start by creating an instance of the desired superclass. We can then intercept calls to any methods we wish to override and forward everything else to the superclass instance.
-
-Let's try that now by recreating our `shoutyCounter` by "inheriting" from the first counter we made and overriding the `increment` method:
+Finally, let's tackle inheritance. To inherit from a class we can start by creating an instance of the desired superclass. We can then intercept calls to any methods we wish to override and forward everything else to the superclass instance. Let's try that now by creating a counter which inherits from `ShoutyCounter` and overrides its `increment` method:
 
 ```javascript
 const makeInheritedShoutyCounter = () => {
