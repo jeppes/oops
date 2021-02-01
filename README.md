@@ -11,7 +11,8 @@ We'll start with a simple function that just returns the argument passed in to i
 ```javascript
 const identity = a => a
 
-console.log(identity(1)) // prints: 1
+// Prints: 1
+console.log(identity(1))
 ```
 
 Let's re-write `identity` slightly to defer its execution. We'll return a function instead of a value:
@@ -19,8 +20,10 @@ Let's re-write `identity` slightly to defer its execution. We'll return a functi
 ```javascript
 const deferredIdentity = a => () => a
 
-console.log(deferredIdentity(1))   // prints: [Function]
-console.log(deferredIdentity(1)()) // prints: 1
+// Prints: [Function]
+console.log(deferredIdentity(1))
+// Prints: 1
+console.log(deferredIdentity(1)())
 ```
 
 Not very useful in and of itself, perhaps, but this trick will come in handy now. Let's give ourselves some options by returning multiple functions:
@@ -39,9 +42,12 @@ Now we can access these functions:
 ```javascript
 const [tenPlusFive, justTen, tenMinus] = someFunctions(10)
 
-console.log(tenPlusFive()) // prints: 15
-console.log(justTen())     // prints: 10
-console.log(tenMinus(5))   // prints: 5
+// Prints: 15
+console.log(tenPlusFive())
+// Prints: 10
+console.log(justTen())
+// Prints: 5
+console.log(tenMinus(5))
 ```
 
 
@@ -60,9 +66,12 @@ Like before, we could pick out the functioning with a destructuring assignment -
 ```javascript
 const ten = someNamedFunctions(10)
 
-console.log(ten.plusFive()) // prints: 15
-console.log(ten.just())     // prints: 10
-console.log(ten.minus(5))   // prints: 5
+// Prints: 15
+console.log(ten.plusFive())
+// Prints: 10
+console.log(ten.just())
+// Prints: 5
+console.log(ten.minus(5))
 ```
 
 Progress!
@@ -84,11 +93,14 @@ const makeCounter = () => {
 const counter = makeCounter()
 
 counter.increment()
-console.log(counter.count()) // prints: 1
+// Prints: 1
+console.log(counter.count())
 counter.increment()
-console.log(counter.count()) // prints: 2
+// Prints: 2
+console.log(counter.count())
 counter.decrement()
-console.log(counter.count()) // prints: 1
+// Prints: 1
+console.log(counter.count())
 ```
 
 Now we support state! Truly private state!
@@ -100,7 +112,9 @@ If our functions can share private variables, surely they can share functions to
 ```javascript
 const makeShoutyCounter = () => {
   let count = 0
-  const shout = () => console.log(`My current count is ${count}!`)
+  const shout = () => console.log(
+      `My current count is ${count}!`
+  )
 
   return {
     increment: () => {
@@ -118,10 +132,15 @@ const makeShoutyCounter = () => {
 
 const shoutyCounter = makeShoutyCounter()
 
-// No need to print manually anymore, the counter will do it for us.
-shoutyCounter.increment() // prints: My current count is 1!
-shoutyCounter.increment() // prints: My current count is 2!
-shoutyCounter.decrement() // prints: My current count is 1!
+// No need to print manually anymore,
+// the counter will do it for us.
+
+// Prints: My current count is 1!
+shoutyCounter.increment()
+// Prints: My current count is 2!
+shoutyCounter.increment()
+// prints: My current count is 1!
+shoutyCounter.decrement()
 ```
 
 Now we have something that's starting to resemble a class. Our constructor is `makeShoutyCounter`, we have public methods like `increment`, private methods like `shout`, and even state like `count`.
@@ -143,9 +162,12 @@ const makeInheritedShoutyCounter = () => {
 }
 
 const inheritedShoutyCounter = makeInheritedShoutyCounter()
-inheritedShoutyCounter.increment() // Prints: Incrementing! My current count is 1!
-inheritedShoutyCounter.increment() // Prints: Incrementing! My current count is 2!
-inheritedShoutyCounter.decrement() // Prints: My current count is 1!
+// Prints: Incrementing! My current count is 1!
+inheritedShoutyCounter.increment()
+ // Prints: Incrementing! My current count is 2!
+inheritedShoutyCounter.increment()
+// Prints: My current count is 1!
+inheritedShoutyCounter.decrement()
 
 ```
 
