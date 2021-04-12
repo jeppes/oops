@@ -61,7 +61,7 @@ const someNamedFunctions = a => ({
 })
 ```
 
-Like before, we could pick out the functioning with a destructuring assignment - but let's just name the map that we return instead:
+Like before, we could pick out the functions with a destructuring assignment - but let's just name the map that we return instead:
 
 ```javascript
 const ten = someNamedFunctions(10)
